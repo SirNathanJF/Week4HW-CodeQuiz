@@ -68,12 +68,12 @@ function beginTimer(){
             gameOver.classList.remove("hidden");
         };
 
-        timerDisplay.innerHTML = ("Time Remaing/Score:" + timeLeft);
-        timeLeft -=1;
+        timerDisplay.innerHTML = ("Time Remaing/Score:" + timeRemaining);
+        timeRemaining -=1;
     }, 1000);
 };
 
-function startQuiz(){
+function runQuiz(){
     startScreen.classList.add("hidden");
     questions.classList.remove("hidden");
     gameOver.classList.add("hidden");
@@ -87,8 +87,24 @@ function startQuiz(){
     showNewQuestion(chooseQuestion, questionBase);
 };
 
+function showNewQuestion(chooseQuestion, questionBase){
+    if (questionBase >= chooseQuestion.length){
+        clearInterval(interval)
+        questions.classList.add("hidden");
+        gameOver.classList.remove("hidden");
+        return;
+    }
 
-//Create function for quiz
+    let presentQuestion = chooseQuestion[questionBase];
+    question.innerText = presentQuestion.question;
+
+    answers.forEach(function answer(){
+        let number = answer.dataset["number"];
+        answer.innerText = number + ". " + presentQuestion["answer" + number];
+    })
+};
+
+
 
 //Create function to generate new question
 
