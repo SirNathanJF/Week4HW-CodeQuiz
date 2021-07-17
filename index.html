@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Code Quiz</title>
 </head>
+
+<header>
+    <a href="#" id="view-score">View Hiscores</a>
+    <section id="timer">Timer:</section>
+</header>
+
 <body>
+
     <main class="main">
 
         <article id="start-screen">
@@ -39,6 +46,11 @@
             <button class="submit-score" id="retry-button">Retry?</button>
         </article>
 
+        <article class="hidden" id="wrong-or-correct">
+            <p class="hidden" id="correct">Correct!</p>
+            <p class="hidden" id="wrong">Wrong!</p>
+        </article>
+
         <article class="hidden" id="hiscores">
             <h2>Leaderboards</h2>
             <section id ="user-score-board">
@@ -56,6 +68,6 @@
             </section>
         </article>
     </main>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
