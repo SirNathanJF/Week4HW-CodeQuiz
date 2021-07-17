@@ -41,10 +41,10 @@ secondRetry.addEventListener("click", retryQuiz);
 
 submit.addEventListener("click", submitScore)
 viewHiscores.addEventListener("click", function(){
-    startScreen.classList.add("hide");
-    questions.classList.add("hide");
-    gameOver.classList.add("hide");
-    hiscore.classList.remove("hide");
+    startScreen.classList.add("hidden");
+    questions.classList.add("hidden");
+    gameOver.classList.add("hidden");
+    hiscore.classList.remove("hidden");
 
     userIndex.forEach(function(){
         users = document.createElement("li");
@@ -59,7 +59,21 @@ viewHiscores.addEventListener("click", function(){
     });
 });
 
-// Create function for timer
+function beginTimer(){
+    interval = setInterval(function(){
+        if (timeRemaining <= 0){
+            clearInterval(timeLeft =0);
+            startScreen.classList.add("hidden");
+            questions.classList.add("hidden");
+            gameOver.classList.remove("hidden");
+        };
+
+        timerDisplay.innerHTML = ("Time Remaing/Score:" + timeLeft);
+        timeLeft -=1;
+    }, 1000);
+};
+
+
 
 //Create function for quiz
 
