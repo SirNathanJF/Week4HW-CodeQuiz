@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Code Quiz</title>
+</head>
+<body>
+    <main class="main">
+
+        <article id="start-screen">
+            <h1>Welcome to Nathan's Javascript Code Quiz!</h1>
+            <p>The following questions will be directly related to Javascript. <br>Use your knowledge to answer them as best as you can.<br> Your score is linked to the timer, and if you answer incorrectly time will be taken away!</p>
+            <ul><h2>Rules and Regulations</h2>
+                <li>Your score is linked directly to the timer, the faster you are the higher your score</li>
+                <li>Answering a question wrong will subtract 3 seconds from the timer, thus lowering your score!</li>
+                <li>Good luck and have fun!</li>
+            </ul>
+            <section id="start-button-section">
+                <button id="start-button">Start</button>
+            </section>
+        </article>
+
+        <article id="questions" class="hidden">
+            <h2 id="question_h2">Questions</h2>
+            <section class="question-buttons">
+                <button class="answer" id="answer1" data-number="1"></button>
+                <button class="answer" id="answer2" data-number="2"></button>
+                <button class="answer" id="answer3" data-number="1"></button>
+                <button class="answer" id="answer4" data-number="1"></button>
+            </section>
+        </article>
+
+        <article id="game-over" class ="hidden">
+            <input type="text" id="initials" placeholder="Type your Initials here">
+            <button class="submit_score" id="submit-button">Submit Score!</button>
+            <button class="submit-score" id="retry-button">Retry?</button>
+        </article>
+
+        <article class="hidden" id="hiscores">
+            <h2>Leaderboards</h2>
+            <section id ="user-score-board">
+                <div id="initial-area">
+                    <h3>User Initals</h3>
+                    <ol id="score-initials"></ol>
+                </div>
+                <div id="score-area">
+                    <h3>Score</h3>
+                    <ol id="score-points"></ol>
+                </div>
+            </section>
+            <section id="score-area-retake">
+                <button id="retry-button-2">Retry?</button>
+            </section>
+        </article>
+    </main>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
