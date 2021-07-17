@@ -73,6 +73,19 @@ function beginTimer(){
     }, 1000);
 };
 
+function startQuiz(){
+    startScreen.classList.add("hidden");
+    questions.classList.remove("hidden");
+    gameOver.classList.add("hidden");
+
+    beginTimer();
+
+    questionBase = 0;
+    chooseQuestion = quizQuestions.sort(function (){
+        Math.random() - .5;
+    });
+    showNewQuestion(chooseQuestion, questionBase);
+};
 
 
 //Create function for quiz
