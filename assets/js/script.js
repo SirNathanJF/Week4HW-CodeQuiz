@@ -46,7 +46,7 @@ viewHiscores.addEventListener("click", function(){
     gameOver.classList.add("hidden");
     hiscore.classList.remove("hidden");
 
-    userIndex.forEach(function(){
+    userIndex.forEach(() => {
         users = document.createElement("li");
         users.innerText = userIndex[usernameIndex].userId;
         userName.appendChild(users);
@@ -98,15 +98,122 @@ function showNewQuestion(chooseQuestion, questionBase){
     let presentQuestion = chooseQuestion[questionBase];
     question.innerText = presentQuestion.question;
 
-    answers.forEach(function answer(){
+    answers.forEach(answer => {
         let number = answer.dataset["number"];
         answer.innerText = number + ". " + presentQuestion["answer" + number];
     })
 };
 
+answers.forEach(answer => {
+    answer.addEventListener("click", event =>{
+        event.preventDefault();
+        let chosenAnswer = event.target.dataset.number
 
+        if (chosenAnswer == quizQuestions[questionBase].correctAnswer){
+            rightOrWrong.classList.remove("hidden");
+            correct.classList.remove("hidden");
 
-//Create function to generate new question
+            setTimeout(function(){
+                rightOrWrong.classList.add("hidden");
+                correct.classList.add("hidden");
+            }, 1000);
+
+            questionBase++
+            showNewQuestion(chooseQuestion, questionBase);
+        } else{
+            rightOrWrong.classList.remove("hidden");
+            wrong.classList.remove("hidden");
+
+            timeRemaining-=3;
+
+            setTimeout(function(){
+                rightOrWrong.classList.add("hidden");
+                correct.classList.add("hidden");
+            }, 1000);
+        }
+    });
+});
+
+function submitScore(){
+    if(initials.value < 1) {
+        return;
+    } else{
+        let score = timeRemaining;
+        let scoreUser = {
+            userId: initials.value.toUpperCase(),
+            Score: score + 1
+        }
+        hiscoreIndex.push(scoreUser)
+        hiscoreIndex.sort( (a,b) => b.Score - a.Score);
+
+        hiscoreIndex.splice(15)
+
+        localStorage.setItem("hiscoreIndex", JSON.stringify(hiscoreIndex));
+
+        scoreIndex.classList.remove("hidden");
+        gameOver.classList.add("hidden");
+
+        userIndex.forEach(() => {
+            users = document.createElement("li");
+            users.innerText = userIndex[usernameIndex].userId;
+            userName.appendChild(users);
+            usernameIndex++
+    
+            scores = document.createElement("li");
+            scores.innerText = userIndex[scoreIndex].Score;
+            userScore.appendChild(scores);
+            scoreIndex++
+        });
+    }
+};
+
+function retryQuiz(){
+    location.reload();
+    return;
+}
+
+let quizQuestions = [
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+    {
+
+    },
+
+]
 
 //Create function to submit score once finished
 
