@@ -172,52 +172,158 @@ function retryQuiz(){
     return;
 }
 
-let quizQuestions = [
+const quizQuestions = [
     {
-
+        question: 'Commonly used data types do not include...',
+        answer1: "Strings",
+        answer2: "Booleans",
+        answer3: "Alerts",
+        answer4: "numbers",
+        correctAnswer: 3,
+    },
+    {
+        question: 'The condition in an if / else statement is enclosed within _____',
+        answer1: "quotes",
+        answer2: "curly brackets",
+        answer3: "parenthesis",
+        answer4: "square brackets",
+       correctAnswer: 3,
+    },
+    {
+        question: "Arrays in Javascript can be used to store ____",
+        answer1:"numbers and strings",
+        answer2:"booleans",
+        answer3:"other arrays",
+        answer4:"all of the above",
+        correctAnswer: 4,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
+    },
+    {
+        question: "Commonly used data types do not include...",
+        answer1:,
+        answer2:,
+        answer3:,
+        answer4:,
+        correctAnswer:,
     },
 
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-    {
-
-    },
-
-]
-
-//Create function to submit score once finished
-
-//Create function to restart the quiz
-
-//Add questions
-
+];
