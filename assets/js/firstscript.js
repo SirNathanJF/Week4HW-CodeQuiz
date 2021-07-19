@@ -12,7 +12,7 @@ let buttonFour = document.getElementById("answer4");
 let correct = document.getElementById("correct");
 let wrong = document.getElementById("wrong");
 let rightOrWrong = document.getElementById("wrong-or-correct");
-let chooseQuestion;
+let chooseQuestion =[];
 let questionBase;
 let activeQuestion;
 let gameOver = document.getElementById("game-over");
@@ -88,8 +88,7 @@ function runQuiz(){
 
     beginTimer();
 
-    questionBase = 0;
-    chooseQuestion = quizQuestions.sort(() => Math.random() - .5);
+   
     showNewQuestion();
 };
 
@@ -141,7 +140,9 @@ function runQuiz(){
 // });
 
 function showNewQuestion(){
-    if(questionBase >= quizQuestions.length){
+    questionBase = 0;
+    chooseQuestion = quizQuestions.sort(() => Math.random() - .5);
+    if(questionBase >= chooseQuestion.length){
         clearInterval(interval)
         questions.classList.add("hidden");
         gameOver.classList.remove("hidden");
