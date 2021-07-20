@@ -10,14 +10,45 @@ let gameOver = document.getElementById("game-over")
 let initialsInput = document.getElementById("initials");
 let submitButton = document.getElementById("submit-button");
 let retryButton = document.getElementById("retry-button");
+let answerBtns = document.querySelectorAll(".answer");
+let rightOrWrong = document.getElementById("wrong-or-correct");
+let correct = document.getElementById("correct");
+let wrong = document.getElementById("wrong");
+let secondRetry = document.querySelector("#retry-button-2");
 let timeRemaining = 100;
 let timerInterval;
-let randomQuestion= [];
-let questionBase;
+let randomQuestion=[];
+let questionBase = 0;
 let currentQuestion;
 
 
-startButton.addEventListener("click", startQuiz)
+startButton.addEventListener("click", startQuiz);
+retry.addEventListener("click", retryQuiz);
+secondRetry.addEventListener("click", retryQuiz);
+
+for (i = 0; i < answerBtns.length; i++) {
+    answerBtns[i].addEventListener('click', checkAnswer)
+  };
+
+  submit.addEventListener("click", submitScore)
+    viewHiscores.addEventListener("click", function(){
+      startScreen.classList.add("hidden");
+      questions.classList.add("hidden");
+      gameOver.classList.add("hidden");
+      hiscore.classList.remove("hidden");
+  
+      userIndex.forEach(() => {
+          users = document.createElement("li");
+          users.textContent = userIndex[usernameIndex].userId;
+          userName.appendChild(users);
+          usernameIndex++
+  
+          scores = document.createElement("li");
+          scores.textContent = userIndex[scoreIndex].Score;
+          userScore.appendChild(scores);
+          scoreIndex++
+      });
+  });
 
 function startQuiz(){
     startScreen.classList.add("hidden");
@@ -35,7 +66,7 @@ function startQuiz(){
 function beginTimer(){
     timerInterval = setInterval(function(){
         timeRemaining--
-        timerDisplay.innerHTML = ("Time Remaing/Score:" + timeRemaining);
+        timerDisplay.innerHTML = ("Time Remaining/Score:" + timeRemaining);
         if(timeRemaining === 0){
             clearInterval(timerInterval);
             questionHeader.classList.add("hidden");
@@ -52,8 +83,8 @@ function beginTimer(){
 };
 
 function showNewQuestion(){
-    questionBase = 0;
-    randomQuestion = quizQuestions.sort(() => Math.random() - .5);
+    console.log(questionBase);
+    randomQuestion = quizQuestions.sort(() => Math.floor(Math.random()*quizQuestions.length));
     if(questionBase >= quizQuestions.length){
         clearInterval(timerInterval);
         questionHeader.classList.add("hidden");
@@ -71,10 +102,33 @@ function showNewQuestion(){
         answer1.textContent = quizQuestions[questionBase].answer1;
         answer2.textContent = quizQuestions[questionBase].answer2;
         answer3.textContent = quizQuestions[questionBase].answer3;
-        answer4.textContent = quizQuestions[questionBase].answer4; 
+        answer4.textContent = quizQuestions[questionBase].answer4;
     }
 
 }
+
+function checkAnswer(event){
+    const value = event.target.getAttribute("data-number");
+    if(quizQuestions[questionBase].correctAnswer === value){
+        rightOrWrong.classList.remove("hidden");
+        correct.classList.remove("hidden");
+        setTimeout(() =>{
+            rightOrWrong.classList.add("hidden");
+            correct.classList.add("hidden");
+        }, 1000);
+        questionBase++
+        showNewQuestion();
+        } else {
+            rightOrWrong.classList.remove("hidden");
+            wrong.classList.remove("hidden");
+            timeRemaining -= 5;
+            setTimeout(() =>{
+                rightOrWrong.classList.add("hidden");
+                wrong.classList.add("hidden");
+            }, 1000);
+        }
+    };
+
 
 
 const quizQuestions = [
@@ -84,7 +138,7 @@ const quizQuestions = [
         answer2: "Booleans",
         answer3: "Alerts",
         answer4: "numbers",
-        correctAnswer: 3,
+        correctAnswer: "3",
     },
     {
         question: 'The condition in an if / else statement is enclosed within _____',
@@ -92,7 +146,7 @@ const quizQuestions = [
         answer2: "curly brackets",
         answer3: "parenthesis",
         answer4: "square brackets",
-       correctAnswer: 3,
+       correctAnswer: "3",
     },
     {
         question: "Arrays in Javascript can be used to store ____",
@@ -100,7 +154,7 @@ const quizQuestions = [
         answer2:"booleans",
         answer3:"other arrays",
         answer4:"all of the above",
-        correctAnswer: 4,
+        correctAnswer: "4",
     },
     {
         question: "Inside which HTML element is the javascript linked?",
@@ -108,7 +162,7 @@ const quizQuestions = [
         answer2:"<a>",
         answer3:"<javscript>",
         answer4:"<script>",
-        correctAnswer: 4,
+        correctAnswer: "4",
     },
     {
         question: "How do you add a comment in Javascript?",
@@ -116,7 +170,7 @@ const quizQuestions = [
         answer2:"Example",
         answer3:'Example',
         answer4:"//Example",
-        correctAnswer: 4,
+        correctAnswer: "4",
     },
     {
         question: "How do you create a function in javascript?",
@@ -124,7 +178,7 @@ const quizQuestions = [
         answer2:"function = myFunction ()",
         answer3:"function : myFunction ()",
         answer4:"function => myfunction()",
-        correctAnswer: 1,
+        correctAnswer: "1",
     },
     {
         question: "What is the proper syntax for an if statement?",
@@ -132,7 +186,7 @@ const quizQuestions = [
         answer2:"if i = true then",
         answer3:"if (i == true)",
         answer4:"if [i == true]",
-        correctAnswer: 3,
+        correctAnswer: "3",
     },
     {
         question: "The first index of an array is...",
@@ -140,7 +194,7 @@ const quizQuestions = [
         answer2:"coders choice",
         answer3:"0",
         answer4:"any",
-        correctAnswer: 3,
+        correctAnswer: "3",
     },
     {
         question: "How do you call a function to run in Javascript?",
@@ -148,7 +202,7 @@ const quizQuestions = [
         answer2:"myFunction();",
         answer3:"pleaseRun myFunction();",
         answer4:"call myFunction",
-        correctAnswer: 2,
+        correctAnswer: "2",
     },
     {
         question: "What happens to information on a form without the method event.prefentdefault()?",
@@ -156,6 +210,6 @@ const quizQuestions = [
         answer2:"The information is lost, form is reloaded",
         answer3:"The information is stored on the internet",
         answer4:"The information gets sent to a server",
-        correctAnswer: 2,
+        correctAnswer: "2",
     },
 ];
