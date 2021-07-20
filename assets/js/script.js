@@ -4,6 +4,7 @@ let buttonThree = document.getElementById("answer3");
 let buttonFour = document.getElementById("answer4");
 let questionHeader = document.getElementById("question_h2");
 let startButton = document.getElementById("start-button");
+let viewHiscores = document.getElementById("view-score");
 let timerDisplay = document.getElementById("timer");
 let startScreen = document.getElementById("start-screen");
 let gameOver = document.getElementById("game-over")
@@ -15,6 +16,16 @@ let rightOrWrong = document.getElementById("wrong-or-correct");
 let correct = document.getElementById("correct");
 let wrong = document.getElementById("wrong");
 let secondRetry = document.querySelector("#retry-button-2");
+let hiscore = document.querySelector("#hiscores");
+let initials = document.querySelector("#initials");
+let userName = document.querySelector("#score-initials");
+let userScore = document.querySelector("#score-points");
+let userIndex = [];
+let usernameIndex = 0;
+let scoreIndex = 0;
+let hiscoreIndex = JSON.parse(localStorage.getItem("hiscoreIndex")) || [];
+userIndex = userIndex.concat(hiscoreIndex)
+let maximumScoreCount = 15
 let timeRemaining = 100;
 let timerInterval;
 let randomQuestion=[];
@@ -23,32 +34,33 @@ let currentQuestion;
 
 
 startButton.addEventListener("click", startQuiz);
-retry.addEventListener("click", retryQuiz);
+retryButton.addEventListener("click", retryQuiz);
 secondRetry.addEventListener("click", retryQuiz);
 
 for (i = 0; i < answerBtns.length; i++) {
     answerBtns[i].addEventListener('click', checkAnswer)
   };
 
-  submit.addEventListener("click", submitScore)
-    viewHiscores.addEventListener("click", function(){
-      startScreen.classList.add("hidden");
-      questions.classList.add("hidden");
-      gameOver.classList.add("hidden");
-      hiscore.classList.remove("hidden");
+submitButton.addEventListener("click", submitScore)
+
+viewHiscores.addEventListener("click", function(){
+    startScreen.classList.add("hidden");
+    questions.classList.add("hidden");
+    gameOver.classList.add("hidden");
+    hiscore.classList.remove("hidden");
   
-      userIndex.forEach(() => {
-          users = document.createElement("li");
-          users.textContent = userIndex[usernameIndex].userId;
-          userName.appendChild(users);
-          usernameIndex++
+    userIndex.forEach(() => {
+        users = document.createElement("li");
+        users.textContent = userIndex[usernameIndex].userId;
+        userName.appendChild(users);
+        usernameIndex++
   
-          scores = document.createElement("li");
-          scores.textContent = userIndex[scoreIndex].Score;
-          userScore.appendChild(scores);
-          scoreIndex++
-      });
-  });
+        scores = document.createElement("li");
+        scores.textContent = userIndex[scoreIndex].Score;
+        userScore.appendChild(scores);
+        scoreIndex++
+    });
+});
 
 function startQuiz(){
     startScreen.classList.add("hidden");
@@ -129,7 +141,43 @@ function checkAnswer(event){
         }
     };
 
-
+function submitScore(){
+    if(initials.value < 1) {
+        return;
+    } else{
+        let score = timeRemaining;
+        let scoreUser = {
+            userId: initials.value,
+            Score: score
+        }
+        hiscoreIndex.push(scoreUser)
+        hiscoreIndex.sort( (a,b) => b.Score - a.Score);
+    
+        hiscoreIndex.splice(15)
+    
+        localStorage.setItem("hiscoreIndex", JSON.stringify(hiscoreIndex));
+    
+        hiscore.classList.remove("hidden");
+        gameOver.classList.add("hidden");
+    
+        userIndex.forEach(() => {
+            users = document.createElement("li");
+            users.textContent = userIndex[usernameIndex].userId;
+            userName.appendChild(users);
+            usernameIndex++
+        
+            scores = document.createElement("li");
+            scores.textContent = userIndex[scoreIndex].Score;
+            userScore.appendChild(scores);
+            scoreIndex++
+        });
+    }
+};
+    
+function retryQuiz(){
+    location.reload();
+    return;
+}
 
 const quizQuestions = [
     {
