@@ -10,6 +10,7 @@ This was the week 4 homework assignment. It was to creat a quiz based on javescr
 ## Screenshot of application and deployed URL
 
 [Deployed URL](https://sirnathanjf.github.io/Week4HW-CodeQuiz/)
+![Example Image]()
 
 ## User Story
 
